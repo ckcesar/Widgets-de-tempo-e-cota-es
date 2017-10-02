@@ -2,7 +2,7 @@
 
 <div style="border:1px solid transparent; width: 100%; height: auto; font-weight: bold; font-size: 14px;" >
 
-    <div style="float: right; width: 500px; height: auto; border: 1px solid transparent; visibility: hidden;" >
+    <div style="float: right; width: 500px; height: auto; border: 1px solid transparent;" >
        <table>
            <tr>
                <th id="dolar_1" onclick="abas(1);" style="font-size: 12px; cursor: pointer; background: #fff; width: 50px;font-family: proxima-nova,Arial,Helvetica,sans-serif; " >Dólar</th>
