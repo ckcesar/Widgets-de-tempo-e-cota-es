@@ -1,13 +1,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
-<style type="text/css">
-    .na-titulo{display:none;}
-    .na-cotacoes{margin-left:-1px}
-    .na-cotacoes a{display: none;}
-    .na-cotacoes {margin-top: -3px;}
-</style>
+
 <div style="border:1px solid transparent; width: 100%; height: auto; font-weight: bold; font-size: 14px;" >
 
-    <div style="float: right; width: 500px; height: auto; border: 1px solid transparent;" >
+    <div style="float: right; width: 500px; height: auto; border: 1px solid transparent; visibility: hidden;" >
        <table>
            <tr>
                <th id="dolar_1" onclick="abas(1);" style="font-size: 12px; cursor: pointer; background: #fff; width: 50px;font-family: proxima-nova,Arial,Helvetica,sans-serif; " >Dólar</th>
@@ -33,12 +28,22 @@
 
     <div style="float: left; width: 200px; height: auto; border: 1px solid transparent;" >
 
-        <div id="cont_f76e44672c2a4c140ae15e72e2108d66">
-            <script type="text/javascript" async src="https://www.tempo.com/wid_loader/f76e44672c2a4c140ae15e72e2108d66"></script>
-            <script type="text/javascript">
-                $('.nomP').hide();
-            </script>
-        </div>
+        <?php
+           $date = date('d/m');
+           $html = '<ul style=" list-style: none;width: 397px; font-family: proxima-nova,Arial,Helvetica,sans-serif; font-size: 12px; " >';
+           $dados = unserialize(file_get_contents("http://frameworks.hgbrasil.com/tempo/hg_tempo.php?cid=BRXX0053")); //Recebe os valores do HG Framework
+
+            foreach($dados['15'] as $row){
+                if($row["date"] == $date){
+                    $html .= '<li style="float:left; border-bottom:0; padding:2px;width: 111px;height: 25px;text-align: center;" ><img style="width: 100%;" src="http://cesartsi.com/teste/imagemTempo/'.$dados[8].'.png" /></li>
+                        <li style="margin-top: 12px;margin-left: -49px;float:left;border-bottom:0; padding:2px;width: 65px;height: 25px;text-align: center;" >'.$row["max"].'°<p style=" margin-top: 1px;">MÁX</p></li>
+                        <li style="margin-top: 12px;margin-left: -26px;float:left;border-bottom:0; padding:2px;width: 65px;height: 25px;text-align: center;" >'.$row["min"].'°<p style=" margin-top: 1px;" >MIN</p></li>
+                        <br/><br/><p style="margin: 22px 88px;" >Campo Mourão</p>';
+                }
+            }
+            $html .='</ul>';
+            echo $html;
+        ?>
 
     </div>
 
@@ -124,3 +129,10 @@
     </script>
 
 </div>
+
+<style type="text/css">
+    .na-titulo{display:none;}
+    .na-cotacoes{margin-left:-1px}
+    .na-cotacoes a{display: none;}
+    .na-cotacoes {margin-top: -3px;}
+</style>
